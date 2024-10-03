@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>C.R.S. + ДВ РФ</title>
+
+</head>
+<style>
+
+    body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #000, #000, #FF0000);
+    background-size: 300% 100%;
+    animation: gradientAnimation 5s infinite alternate-reverse;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+}
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.card {
+    background-color: #000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    max-width: 80%;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.social-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-column:hover {
+    transform: scale(1.1);
+}
+
+.social-icons img {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.1);
+}
+
+.social-icons {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10%;
+    align-items: center;
+}
+
+.nav-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+}
+
+.nav-button {
+    margin-left: 15px;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.back-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 35px;
+
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.social-icon i {
+    line-height: 40px;
+}
+
+@media only screen and (max-width: 440px) {
+    body {
+        font-size: 14px;
+    }
+
+    .card {
+        max-width: 80%;
+        width: 300px;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        margin-bottom: 8px;
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+
+    .social-icons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .social-column {
+        align-items: center;
+        width: 48%;
+        margin-top: 10px;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+
+    .social-icons img {
+        width: 40px;
+        height: 40px;
+        margin: 0 5px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        align-items: flex-end;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+    }
+
+    .nav-button {
+        margin: 5px 0;
+        width: auto;
+    }
+
+    .profile-card {
+        max-width: 80%;
+        width: 300px;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .back-button {
+        width: auto;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+}
+#cookie-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 90%;
+    max-width: 600px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+#cookie-message.hidden {
+    opacity: 0;
+}
+
+#close-cookie-message {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#close-cookie-message:hover {
+    background-color: #aa0000;
+}
+
+</style>
+<body>
+    <canvas id="matrix"></canvas>
+
+    <div class="card">
+        <img src="https://i.ibb.co/WWcPvf4/logo.jpg" alt="Company Logo" class="logo">
+        <h1>C.R.S. + ДВ РФ</h1>
+        <p>F***ing Security</p>
+
+        <div class="social-icons">
+            <div class="social-column">
+                <img src="https://i.ibb.co/VL4B56Y/logo-crs.jpg" alt="Icon 1">
+                <p>0xF4</p>
+            </div>
+            <div class="social-column">
+                <img src="https://i.ibb.co/WWcPvf4/logo.jpg" alt="Icon 1">
+                <p>Ares</p>
+            </div>
+
+        </div>
+
+        <div class="social-icons">
+            <a href="https://CyberRussianSquad.t.me" target="_blank" class="social-icon">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a href="https://t.me/+OIlfm1E_hq01NmEy" target="_blank" class="social-icon">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <div id="cookie-message">
+        <p>
+Ваши данные скомпроментированы и скоро окажутся в открытом доступе. | Your data has been compromised and will soon be publicly available.       </p>
+        <button id="close-cookie-message">OK</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アカサタナハマヤラワン0123456789';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                const textYPosition = rainDrops[i] * fontSize;
+
+                if (textYPosition < canvas.height / 3) {
+                    ctx.fillStyle = '#FFFFFF';
+                } else if (textYPosition < (canvas.height / 3) * 2) {
+                    ctx.fillStyle = '#0000FF';
+                } else {
+                    ctx.fillStyle = '#FF0000';
+                }
+
+                ctx.fillText(text, i * fontSize, textYPosition);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        var cookieMessage = document.getElementById("cookie-message");
+        var closeButton = document.getElementById("close-cookie-message");
+
+
+
+        closeButton.addEventListener("click", function () {
+            cookieMessage.style.display = "none";
+        });
+        var cookieMessage = document.getElementById("cookie-message");
+var closeButton = document.getElementById("close-cookie-message");
+
+closeButton.addEventListener("click", function () {
+    cookieMessage.classList.add("hidden");
+
+    setTimeout(function() {
+        cookieMessage.style.display = "none";
+    }, 500);
+});
+
+    </script>
+</body>
+
+</html>
